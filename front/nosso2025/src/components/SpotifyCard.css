@@ -1,0 +1,82 @@
+.spotify-card {
+    background: linear-gradient(180deg, rgba(30,30,30,0.8) 0%, #121212 100%);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 350px; /* Largura similar a um celular */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza tudo */
+    gap: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.2s;
+}
+
+.spotify-card:hover {
+    transform: scale(1.02);
+}
+
+/* Imagem da Capa */
+.spotify-album-art {
+    width: 100%;
+    aspect-ratio: 1/1; /* Garante que seja quadrada */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+}
+
+/* Informações da Faixa */
+.spotify-track-info {
+    width: 100%;
+    text-align: left; /* No Spotify o texto fica alinhado à esquerda */
+    padding: 0 5px;
+}
+
+.spotify-title {
+    color: white;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 0;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.spotify-artist {
+    color: #b3b3b3; /* O cinza clássico do Spotify */
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Botão de Play */
+.spotify-controls {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Botão fica na direita ou centro? No print é distribuido, mas pediu só o play */
+    align-items: center;
+    margin-top: 10px;
+}
+
+.play-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white; /* Ou #1db954 para o verde Spotify */
+    padding: 0;
+    transition: transform 0.1s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    color: #1db954; /* Efeito verde ao passar o mouse */
+}
+
+.play-btn:active {
+    transform: scale(0.95);
+}

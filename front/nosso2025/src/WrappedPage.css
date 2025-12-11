@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+/* --- ESTRUTURA PRINCIPAL --- */
+.page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  position: relative; /* Necessário para posicionar o fundo */
+  overflow: hidden;   /* Garante que o desfoque não vaze nas bordas */
+  
+  /* Removemos a imagem de fundo daqui */
+  /* background: ... */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  z-index: 1; /* Garante que o conteúdo fique acima do fundo */
+}
+
+/* --- O NOVO FUNDO MÁGICO (Pseudo-elemento) --- */
+.page-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Fica atrás do conteúdo */
+
+  /* A imagem e o overlay escuro vêm para cá */
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(10, 5, 20, 0.8)), /* Overlay um pouco mais suave */
+    url('https://as2.ftcdn.net/jpg/02/45/09/13/1000_F_245091305_jE0v32Avkrh09lpfxkMuqSDKAWFzYjx8.jpg');
+  
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efeito parallax */
+
+  /* AQUI ESTÁ A MÁGICA: */
+  /* grayscale(100%): Deixa totalmente cinza */
+  /* blur(20px): Aplica um desfoque forte */
+  filter: grayscale(50%) blur(10px);
+
+  /* Aumenta um pouco a imagem para esconder as bordas borradas */
+  transform: scale(1.1);
+}
+
+/* Container de conteúdo */
+.content-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* --- TEXTOS E TÍTULOS --- */
+.header-names {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Classe para o GradientText */
+.gradient-title {
+  font-size: 4rem;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+/* --- HERO SECTION (FOTO PRINCIPAL) --- */
+/* --- HERO SECTION (FOTO PRINCIPAL) --- */
+.hero-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* IMPORTANTE: Faz o texto ficar embaixo da foto */
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  padding: 20px 0;
+}
+
+/* Nova classe para a legenda */
+.hero-caption {
+  color: rgba(255, 255, 255, 0.8); /* Branco com leve transparência p/ ficar elegante */
+  font-size: 1rem;
+  margin-top: -10px; /* Puxa um pouco pra cima pra ficar perto da foto */
+  font-weight: 300;
+  text-align: center;
+  font-style: italic;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Sombra para ler bem em qualquer fundo */
+  max-width: 90%;
+}
+
+/* Ajuste para celular */
+@media (max-width: 600px) {
+  .hero-caption {
+    font-size: 0.9rem;
+    margin-top: 0px;
+  }
+}
+.spotify-card {
+    background: linear-gradient(180deg, rgba(30,30,30,0.6) 0%, rgba(18,18,18,0.8) 100%);
+    backdrop-filter: blur(20px); /* O card também tem um desfoque próprio */
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.2s;
+}
+
+.spotify-card:hover {
+    transform: scale(1.02);
+}
+
+.spotify-album-art {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+}
+
+.spotify-track-info {
+    width: 100%;
+    text-align: left;
+    padding: 0 5px;
+}
+
+.spotify-title {
+    color: white;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 0;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.spotify-artist {
+    color: #b3b3b3;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+.spotify-controls {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centralizei o play para ficar mais harmônico */
+    align-items: center;
+    margin-top: 10px;
+}
+
+.play-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 0;
+    transition: transform 0.1s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    color: #1db954; /* Verde Spotify */
+}
+
+.play-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* --- STACK SECTION (CARROSSEL) --- */
+.stack-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.stack-section h3 {
+  color: #db2777;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.stack-hint {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.stack-wrapper {
+  width: 450px;
+  height: 450px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- TELA DE BLOQUEIO (LOCK SCREEN) --- */
+.container-lock {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Fundo desfocado também para a tela de bloqueio */
+.container-lock::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('https://as2.ftcdn.net/jpg/02/45/09/13/1000_F_245091305_jE0v32Avkrh09lpfxkMuqSDKAWFzYjx8.jpg');
+  background-size: cover;
+  background-position: center;
+   filter: grayscale(50%) blur(10px);
+  transform: scale(1.1);
+}
+
+.lock-box {
+  background: rgba(30, 30, 30, 0.6); /* Mais transparente */
+  backdrop-filter: blur(15px);
+  padding: 3rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  text-align: center;
+  width: 90%;
+  max-width: 450px;
+  color: white;
+}
+
+.lock-box h2 {
+  color: #db2777;
+  margin-bottom: 1rem;
+}
+
+.lock-box input {
+  width: 100%;
+  padding: 15px;
+  margin: 20px 0;
+  border: 1px solid #444;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 1.1rem;
+  text-align: center;
+  outline: none;
+}
+
+.lock-box input:focus {
+  border-color: #db2777;
+}
+
+.lock-box button {
+  background: linear-gradient(45deg, #db2777, #9d174d);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.lock-box button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(219, 39, 119, 0.5);
+}
+
+.error {
+  color: #ff4d4d;
+  margin-top: 15px;
+}
+
+/* --- ANIMAÇÕES --- */
+.fade-in {
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- RESPONSIVIDADE (CELULAR) --- */
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding: 20px 10px;
+  }
+
+  .content-container {
+    gap: 2rem;
+  }
+
+  .gradient-title {
+    font-size: 2.2rem;
+  }
+
+  .stack-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+}
